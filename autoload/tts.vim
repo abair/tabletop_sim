@@ -31,12 +31,12 @@ def get_word_definitions(word_to_define):
 EOF
 
 " Calls the Python 3 function.
-function! vim-tts#DefineWord()
+function! tts#DefineWord()
     let cursorWord = expand('<cword>')
     python3 get_word_definitions(vim.eval('cursorWord'))
 endfunction
 
-function! vim-tts#AspellCheck()
+function! tts#AspellCheck()
     let cursorWord = expand('<cword>')
     let aspellSuggestions = system("echo '" . cursorWord . "' | aspell -a")
     let aspellSuggestions = substitute(aspellSuggestions, "& .* 0:", "", "g")
