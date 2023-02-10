@@ -35,3 +35,12 @@ function! vim-tts#DefineWord()
     let cursorWord = expand('<cword>')
     python3 get_word_definitions(vim.eval('cursorWord'))
 endfunction
+
+function! vim-tts#AspellCheck()
+    let cursorWord = expand('<cword>')
+    let aspellSuggestions = system("echo '" . cursorWord . "' | aspell -a")
+    let aspellSuggestions = substitute(aspellSuggestions, "& .* 0:", "", "g")
+    let aspellSuggestions = substitute(aspellSuggestions, ", ", "\n", "g")
+    echo aspellSuggestions
+endfunction
+    
